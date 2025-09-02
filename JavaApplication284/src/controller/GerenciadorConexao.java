@@ -44,21 +44,14 @@ public class GerenciadorConexao {
             }
         } catch (SQLException erro) {
             Logger.getLogger(GerenciadorConexao.class.getName())
-                    .Log(Level.SEVERE, null, erro);
+                    .log(Level.SEVERE, null, erro);
         }
+    }
+
+ 
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    public void fecahrConexao(PreparedStatement comando) {
+    public void fecharConexao(PreparedStatement comando) {
         fecharConexao();
 
         try {
@@ -86,4 +79,4 @@ public class GerenciadorConexao {
 
 }
 
-}
+

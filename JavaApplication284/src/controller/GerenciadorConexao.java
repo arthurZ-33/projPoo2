@@ -37,4 +37,53 @@ public class GerenciadorConexao {
         return comando;
     }
 
+    public void fecharConexao() {
+        try {
+            if (conexao != null) {
+                conexao.close();
+            }
+        } catch (SQLException erro) {
+            Logger.getLogger(GerenciadorConexao.class.getName())
+                    .Log(Level.SEVERE, null, erro);
+        }
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    public void fecahrConexao(PreparedStatement comando) {
+        fecharConexao();
+
+        try {
+            if (comando != null) {
+                comando.close();
+            }
+        } catch (SQLException erro) {
+            Logger.getLogger(GerenciadorConexao.class.getName())
+                    .log(Level.SEVERE, null, erro);
+        }
+    }
+
+    public void fecharConexao(PreparedStatement comando, ResultSet resultado) {
+        fecharConexao(comando);
+
+        try {
+            if (resultado != null) {
+                resultado.close();
+            }
+        } catch (SQLException erro) {
+            Logger.getLogger(GerenciadorConexao.class.getName())
+                    .log(Level.SEVERE, null, erro);
+        }
+    }
+
+}
+
 }

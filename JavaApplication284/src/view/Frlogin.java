@@ -31,11 +31,11 @@ public class Frlogin extends javax.swing.JFrame {
         pnl = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
         edtUsuario = new javax.swing.JTextField();
-        edtSenha = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JToggleButton();
         lblSenha = new javax.swing.JLabel();
         lblLogin = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        edtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -56,9 +56,6 @@ public class Frlogin extends javax.swing.JFrame {
             }
         });
         pnl.add(edtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 275, -1));
-
-        edtSenha.setBackground(new java.awt.Color(255, 255, 255));
-        pnl.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 275, -1));
 
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
         btnEntrar.setText("Entrar");
@@ -84,6 +81,7 @@ public class Frlogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User_image.png"))); // NOI18N
         pnl.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 60, 70));
+        pnl.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,10 +109,16 @@ public class Frlogin extends javax.swing.JFrame {
     
     private void logar(){
         //ler os campos
-        
+        String usuario = edtUsuario.getText();
+        String senha = new String(edtSenha.getPassword());
         //guardar os dados
         
-        //
+        //consultar no banco de dados
+        
+        //verificar se tem ou não aquele usúario
+        
+        
+        
     }
     
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
@@ -147,6 +151,9 @@ public class Frlogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Frlogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -158,7 +165,7 @@ public class Frlogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnEntrar;
-    private javax.swing.JTextField edtSenha;
+    private javax.swing.JPasswordField edtSenha;
     private javax.swing.JTextField edtUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblLogin;

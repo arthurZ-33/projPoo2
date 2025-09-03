@@ -6,15 +6,15 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jconsultar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="consultar"/>
+            <Property name="text" type="java.lang.String" value="cadastros"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miConUsuarios">
+            <MenuItem class="javax.swing.JMenuItem" name="miCadUsuarios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miConUsuariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miCadUsuariosActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
@@ -35,9 +35,9 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMcadastros">
+        <Menu class="javax.swing.JMenu" name="jMConc">
           <Properties>
-            <Property name="text" type="java.lang.String" value="cadasros"/>
+            <Property name="text" type="java.lang.String" value="consultas"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMUsuario">

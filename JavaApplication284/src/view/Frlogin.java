@@ -155,8 +155,8 @@ public class Frlogin extends javax.swing.JFrame {
 
         if (controller.autenticar(usuario, senha)) {
             FrMenu telaMenu = new FrMenu();
-            this.setVisible(false);
             telaMenu.setVisible(true);
+            this.setVisible(false);
             JOptionPane.showMessageDialog(rootPane, "Usuário encontrado com sucesso");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Usuário não encontrado");

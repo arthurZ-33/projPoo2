@@ -277,7 +277,10 @@ public class FrCadUsuario extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "campo 'Email' possui formato inválido");
         return false;
     }
-    
+    if(!edtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}")){
+        JOptionPane.showMessageDialog(null, "O campo de 'data de nascimento' possui formato inválido ");
+    }
+        
         
     return false;
     }

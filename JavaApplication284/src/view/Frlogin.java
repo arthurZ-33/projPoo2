@@ -5,6 +5,13 @@
  */
 package view;
 
+import com.sun.glass.events.KeyEvent;
+import controller.UsuarioController;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import utils.Util;
+
 /**
  *
  * @author aluno.saolucas
@@ -40,6 +47,11 @@ public class Frlogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setBackground(new java.awt.Color(204, 204, 204));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pnl.setBackground(new java.awt.Color(204, 204, 204));
         pnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,6 +93,12 @@ public class Frlogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User_image.png"))); // NOI18N
         pnl.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 60, 70));
+
+        edtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edtSenhaKeyPressed(evt);
+            }
+        });
         pnl.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,24 +124,64 @@ public class Frlogin extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         logar();
     }//GEN-LAST:event_btnEntrarActionPerformed
-    
-    private void logar(){
+
+    private boolean verificarCampos() {
+        if (edtUsuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Usuário em branco");
+            return false;
+        }
+
+        if (new String(edtSenha.getPassword()).isEmpty()) {
+
+            JOptionPane.showMessageDialog(rootPane, "Senha em branco");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void logar() {
+        if (!verificarCampos()) {
+            return;
+        }
+
         //ler os campos
         String usuario = edtUsuario.getText();
         String senha = new String(edtSenha.getPassword());
         //guardar os dados
-        
+
         //consultar no banco de dados
-        
+        UsuarioController controller = new UsuarioController();
+
+        if (controller.autenticar(usuario, senha)) {
+            FrMenu telaMenu = new FrMenu();
+            this.setVisible(false);
+            telaMenu.setVisible(true);
+            JOptionPane.showMessageDialog(rootPane, "Usuário encontrado com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Usuário não encontrado");
+        }
         //verificar se tem ou não aquele usúario
-        
-        
-        
+
     }
-    
+
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
-        // TODO add your handling code here:
+        logar();
     }//GEN-LAST:event_btnEntrarMouseClicked
+
+    private void edtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSenhaKeyPressed
+      if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+      logar();
+      }
+    }//GEN-LAST:event_edtSenhaKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+      URL caminhoImagem = getClass().getResource("/images/User_image.png");
+      
+      ImageIcon icon = new ImageIcon(caminhoImagem);
+      
+      this.setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -139,16 +197,24 @@ public class Frlogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frlogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frlogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frlogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frlogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frlogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frlogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frlogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frlogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

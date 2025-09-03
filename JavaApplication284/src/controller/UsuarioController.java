@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.awt.image.BufferedImage;
@@ -18,8 +17,36 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 public class UsuarioController {
-    
-    
+
+    public boolean autenticar(String usuario, String senha) {
+        String sql = "SELECT * from tbusuario"
+                + " WHERE email = ? and senha = ?"
+                + " and ativo = true";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
+        
+        
+        try {
+            comando = gerenciador.prepararComando(sql);
+          
+            comando.setString(1, usuario);
+            comando.setString(2, senha);
+            
+            resultado = comando.executeQuery();
+            
+            if(resultado.next()){
+                return true;
+             }
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }finally {
+            gerenciador.fecharConexao(comando, resultado);
+        }
+        return false;
+    }
 }
+

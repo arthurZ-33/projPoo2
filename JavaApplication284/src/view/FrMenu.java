@@ -37,7 +37,7 @@ public class FrMenu extends javax.swing.JFrame {
         miCadUsuarios = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMConc = new javax.swing.JMenu();
+        jMConsulta = new javax.swing.JMenu();
         jMUsuario = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMSair = new javax.swing.JMenuItem();
@@ -87,7 +87,7 @@ public class FrMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jconsultar);
 
-        jMConc.setText("consultas");
+        jMConsulta.setText("consultas");
 
         jMUsuario.setText("Usuario");
         jMUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class FrMenu extends javax.swing.JFrame {
                 jMUsuarioActionPerformed(evt);
             }
         });
-        jMConc.add(jMUsuario);
+        jMConsulta.add(jMUsuario);
 
         jMenuItem2.setText("???");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +103,7 @@ public class FrMenu extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMConc.add(jMenuItem2);
+        jMConsulta.add(jMenuItem2);
 
         jMSair.setText("Sair");
         jMSair.addActionListener(new java.awt.event.ActionListener() {
@@ -111,9 +111,9 @@ public class FrMenu extends javax.swing.JFrame {
                 jMSairActionPerformed(evt);
             }
         });
-        jMConc.add(jMSair);
+        jMConsulta.add(jMSair);
 
-        jMenuBar1.add(jMConc);
+        jMenuBar1.add(jMConsulta);
 
         jMsobre.setText("sobre");
         jMenuBar1.add(jMsobre);
@@ -200,7 +200,7 @@ public class FrMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMConc;
+    private javax.swing.JMenu jMConsulta;
     private javax.swing.JMenuItem jMSair;
     private javax.swing.JMenuItem jMUsuario;
     private javax.swing.JMenuBar jMenuBar1;

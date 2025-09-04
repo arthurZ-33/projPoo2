@@ -5,8 +5,12 @@
  */
 package view;
 
+
+import controller.UsuarioController;
 import javax.swing.JOptionPane;
+import model.Usuario;
 import utils.Util;
+
 /**
  *
  * @author aluno.saolucas
@@ -40,11 +44,13 @@ public class FrCadUsuario extends javax.swing.JDialog {
         edtDataNasc = new javax.swing.JFormattedTextField();
         edtNome = new javax.swing.JTextField();
         edtEmail = new javax.swing.JTextField();
-        edtSenha = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkAtivo = new javax.swing.JCheckBox();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        edtConfSenha = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        edtSenha = new javax.swing.JPasswordField();
 
         jLabel1.setText("jLabel1");
 
@@ -91,10 +97,10 @@ public class FrCadUsuario extends javax.swing.JDialog {
             }
         });
 
-        jCheckBox1.setText("Ativo");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        chkAtivo.setText("Ativo");
+        chkAtivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                chkAtivoActionPerformed(evt);
             }
         });
 
@@ -124,36 +130,54 @@ public class FrCadUsuario extends javax.swing.JDialog {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar_cad.png"))); // NOI18N
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Confirmar senha");
+
+        edtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPcadLayout = new javax.swing.GroupLayout(jPcad);
         jPcad.setLayout(jPcadLayout);
         jPcadLayout.setHorizontalGroup(
             jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPcadLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPcadLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPcadLayout.createSequentialGroup()
                         .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(edtNome)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(edtEmail)
-                            .addComponent(edtSenha)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPcadLayout.createSequentialGroup()
                                 .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(edtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnCancelar))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(chkAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
                             .addComponent(jLabel3)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(edtConfSenha))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPcadLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPcadLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(168, 168, 168))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPcadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164))
         );
         jPcadLayout.setVerticalGroup(
             jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,26 +199,33 @@ public class FrCadUsuario extends javax.swing.JDialog {
                 .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(8, 8, 8)
+                .addGap(10, 10, 10)
                 .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(edtDataNasc))
-                .addGap(66, 66, 66)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edtConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkAtivo)
+                    .addComponent(edtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSalvar))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnCancelar))
+                .addGap(79, 79, 79))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPcad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPcad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,9 +239,9 @@ public class FrCadUsuario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtDataNascActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void chkAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAtivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_chkAtivoActionPerformed
 
     private void edtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtEmailActionPerformed
         // TODO add your handling code here:
@@ -225,65 +256,93 @@ public class FrCadUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       this.setIconImage(Util.getIcone());
+        this.setIconImage(Util.getIcone());
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-      this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
-      gravar();
+        gravar();
     }//GEN-LAST:event_btnSalvarMouseClicked
 
-    private void gravar(){
-    //validar o preenchimento dos campos
+    private void edtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtSenhaActionPerformed
 
-    //ler os campos e guardar um objeto
-    
-    //enviar para o banco de dados
-    
+    private void gravar() {
+        //validar o preenchimento dos campos
+        if(!verificarCampos()){
+            return;
+        }
+
+        //ler os campos e guardar um objeto
+        Usuario usu = new Usuario();
+        usu.setNome(edtNome.getText());
+        usu.setEmail(edtEmail.getText());
+        usu.setSenha(Util.calcularHash(new String(edtSenha.getPassword())));
+        usu.setDataNascimento(Util.converterStringToDate(edtDataNasc.getText()));
+        usu.setAtivo(chkAtivo.isSelected());
+
+        //enviar para o banco de dados
+        UsuarioController controller = new UsuarioController();
+        if(controller.inserir(usu)){
+            JOptionPane.showMessageDialog(null, "Usuário inserido");
+            this.dispose();
+        }
     }
-    
-    private boolean verificarCampos(){
-    if(edtNome.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "campo 'Nome' em branco");
+
+    private boolean verificarCampos() {
+        if (edtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "campo 'Nome' em branco");
+            return false;
+        }
+        if (edtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "campo 'E-mail' em branco");
+            return false;
+        }
+        if (edtSenha.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "campo 'Senha' em branco");
+            return false;
+        }
+
+        //Sobre os codigos abaixo:
+        //^ - inicio de linha
+        //$ - final de linha
+        //[] - conjunto de caracteres
+        // + - quantidade de vezes que o conjunto pode aparecener
+        //! - 1 ou mais vezes
+        //* - 0 ou mais vezes
+        //{5}  5 vezes
+        //{2} vezes
+        if (!edtSenha.getText().matches("^[\\p[L] ]+$")) {
+            JOptionPane.showMessageDialog(null, "campo 'Nome' possui formato inválido");
+            return false;
+        }
+        if (!edtEmail.getText().matches("^[a-z0-9_.]+@[a-z0-9]+.[a-z+]$")) {
+            JOptionPane.showMessageDialog(null, "campo 'Email' possui formato inválido");
+            return false;
+        }
+        if (!edtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}")) {
+            JOptionPane.showMessageDialog(null, "O campo de 'data de nascimento' possui formato inválido ");
+        }
+
+        if (new String(edtConfSenha.getPassword()).length() < 6){
+        JOptionPane.showMessageDialog(null, "A senha deve ter mais que 6 digitos");
+         return false;
+        }
+
+        String senha = new String(edtSenha.getPassword());
+        String confirmaSenha = new String(edtConfSenha.getPassword());
+        if (!senha.equals(confirmaSenha)) {
+            JOptionPane.showConfirmDialog(null, "As senhas devem ser iguais");
+            return false;
+        }
+
         return false;
     }
-    if(edtEmail.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "campo 'E-mail' em branco");
-        return false;
-    }
-    if(edtSenha.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "campo 'Senha' em branco");
-        return false;
-    }
-    
-    //Sobre os codigos abaixo:
-    //^ - inicio de linha
-    //$ - final de linha
-    //[] - conjunto de caracteres
-    // + - quantidade de vezes que o conjunto pode aparecener
-    //! - 1 ou mais vezes
-    //* - 0 ou mais vezes
-    //{5}  5 vezes
-    //{2} vezes
-    
-    if(!edtSenha.getText().matches("^[\\p[L] ]+$")){
-        JOptionPane.showMessageDialog(null, "campo 'Nome' possui formato inválido");
-        return false;
-    }
-    if(!edtEmail.getText().matches("^[a-z0-9_.]+@[a-z0-9]+.[a-z+]$")){
-        JOptionPane.showMessageDialog(null, "campo 'Email' possui formato inválido");
-        return false;
-    }
-    if(!edtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}")){
-        JOptionPane.showMessageDialog(null, "O campo de 'data de nascimento' possui formato inválido ");
-    }
-        
-        
-    return false;
-    }
+
     /**
      * @param args the command line arguments
      */
@@ -329,11 +388,12 @@ public class FrCadUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JCheckBox chkAtivo;
+    private javax.swing.JTextField edtConfSenha;
     private javax.swing.JFormattedTextField edtDataNasc;
     private javax.swing.JTextField edtEmail;
     private javax.swing.JTextField edtNome;
-    private javax.swing.JTextField edtSenha;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JPasswordField edtSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -341,6 +401,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPcad;
     // End of variables declaration//GEN-END:variables
 }

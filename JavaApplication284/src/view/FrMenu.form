@@ -35,7 +35,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMConc">
+        <Menu class="javax.swing.JMenu" name="jMConsulta">
           <Properties>
             <Property name="text" type="java.lang.String" value="consultas"/>
           </Properties>

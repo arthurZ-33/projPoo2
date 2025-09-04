@@ -314,7 +314,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
         //* - 0 ou mais vezes
         //{5}  5 vezes
         //{2} vezes
-        if (!edtSenha.getText().matches("^[\\p[L] ]+$")) {
+        if (!edtNome.getText().matches("^[\\p{L} ]+$")) {
             JOptionPane.showMessageDialog(null, "campo 'Nome' possui formato inválido");
             return false;
         }

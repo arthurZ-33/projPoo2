@@ -335,7 +335,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
             return false;
         }
 
-        return false;
+        return true;
     }
 
     /**

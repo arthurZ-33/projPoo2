@@ -53,8 +53,7 @@ public class UsuarioController {
     
       public boolean inserir(Usuario usu) {
         String sql = "INSERT INTO TBUSUARIO (nome, email, senha, datanasc, ativo)"
-                + "Values (?, ?, ?, ?, ?)"
-                + " and ativo = true";
+                + "Values (?, ?, ?, ?, ?)";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         

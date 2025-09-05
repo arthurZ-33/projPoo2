@@ -68,7 +68,7 @@ public class Usuario {
         return ativo;
     }
 
-    public void setAtivo(boolean ative) {
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
     

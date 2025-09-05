@@ -1,6 +1,5 @@
 package utils;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
 import java.awt.Image;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -56,11 +55,9 @@ public class Util {
 
             //converta o hash de bytes para
             //uma representação hexadecimal
-            StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
                 hashSHA1 = hashSHA1 + String.format("%02x", b);
             }
-            hashSHA1 = sb.toString();
         } catch (NoSuchAlgorithmException e) {
             System.err.println("Algoritimo SHA1 não encontrado");
         }

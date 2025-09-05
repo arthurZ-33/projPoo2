@@ -111,6 +111,11 @@ public class frConUsuario extends javax.swing.JDialog {
         });
 
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código igual a", "Nome contendo", "E-mail contendo", "Usuários ativos" }));
+        cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
@@ -194,6 +199,8 @@ public class frConUsuario extends javax.swing.JDialog {
     //passar os filtros pro método consultar
     List<Usuario> listaUsuarios = controller.consultar();
     
+    
+    
     //prencher a grade
     for(Usuario usu: listaUsuarios){
         Object[] linha = {
@@ -224,6 +231,10 @@ public class frConUsuario extends javax.swing.JDialog {
     private void edtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtFiltroActionPerformed
+
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFiltroActionPerformed
 
     /**
      * @param args the command line arguments

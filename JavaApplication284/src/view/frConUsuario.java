@@ -43,6 +43,7 @@ public class frConUsuario extends javax.swing.JDialog {
         btnVoltar = new javax.swing.JButton();
         edtFiltro = new javax.swing.JTextField();
         cbxFiltro = new javax.swing.JComboBox<>();
+        btnAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,15 +118,19 @@ public class frConUsuario extends javax.swing.JDialog {
             }
         });
 
+        btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrincipalLayout.createSequentialGroup()
                 .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(btnVoltar))
                     .addGroup(pnlPrincipalLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,6 +147,12 @@ public class frConUsuario extends javax.swing.JDialog {
                                 .addGap(30, 30, 30)
                                 .addComponent(btnPesquisar)))))
                 .addContainerGap(141, Short.MAX_VALUE))
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(btnVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAlterar)
+                .addGap(152, 152, 152))
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +167,9 @@ public class frConUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(btnVoltar)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVoltar)
+                    .addComponent(btnAlterar))
                 .addGap(70, 70, 70))
         );
 
@@ -197,7 +210,7 @@ public class frConUsuario extends javax.swing.JDialog {
     UsuarioController controller = new UsuarioController();
     
     //passar os filtros pro método consultar
-    List<Usuario> listaUsuarios = controller.consultar();
+    List<Usuario> listaUsuarios = controller.consultar(opcaoFiltro, filtro);
     
     
     
@@ -237,6 +250,26 @@ public class frConUsuario extends javax.swing.JDialog {
     private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxFiltroActionPerformed
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        //Valido se tem alguma linha selecionada no grade = -1
+        if(tblUsuarios.getSelectedRow() == -1){
+        return;//encerro a função
+        }
+        
+        //pego o valor de célula na grade, na coluna 0 (código)
+        int posicaoLinha = tblUsuarios.getSelectedRow();
+        
+        //pegar o valor da célula na grade, na coluna 0(código)
+        String celula = tblUsuarios.getValueAt(posicaoLinha, 0).toString();
+        
+        int pkUsuario = Integer.parseInt(celula);
+        
+        FrAltUsuario telaAlterar = new FrAltUsuario(null, rootPaneCheckingEnabled);
+        // passo pra tela e alteraçãp o código do usuário selecionado
+        telaAlterar.setPkUsuario();
+        telaAlterar.setVisible(true);
+    }//GEN-LAST:event_btnAlterarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -281,6 +314,7 @@ public class frConUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbxFiltro;

@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Usuario;
+import utils.Util;
 
 public class UsuarioController {
 
@@ -80,8 +81,38 @@ public class UsuarioController {
         return false;
     }
       
-      public List<Usuario> consultar(){
+      public List<Usuario> consultar(int opcaoFiltro, String filtro){
         String sql = "SELECT * from  TBUSUARIO";
+        
+        for(Usuario usu: listaUsuarios){
+        boolean adicionar = false;
+        
+        switch(opcaoFiltro){
+            case 0:
+            if(String.valueOf(usu.getPkUsuario()).equals(filtro)){
+            adicionar = true;
+            }
+            break;
+        
+        
+        }
+            
+            
+            
+            
+        if(adicionar)
+        Object[] linha = {
+        usu.getPkUsuario(), //coluna 0
+        usu.getNome(), //coluna 1
+        usu.getEmail(), //coluna 2
+        Util.converterDateToString(usu.getDataNascimento()), // coluna 3
+        usu.isAtivo()
+    };
+     
+        modeloTabela.addRow(linha);
+    }
+    
+        
          
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();

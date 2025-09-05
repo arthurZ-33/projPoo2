@@ -210,9 +210,11 @@ public class frConUsuario extends javax.swing.JDialog {
         Util.converterDateToString(usu.getDataNascimento()), // coluna 3
         usu.isAtivo()
     };
-        
+     
         modeloTabela.addRow(linha);
     }
+    
+    
     
     }
     

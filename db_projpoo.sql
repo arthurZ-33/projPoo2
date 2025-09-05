@@ -10,4 +10,7 @@ datanasc date,
 ativo bool
 );
 rename table usuario to tbusuario;
-insert into tbusuario(nome,email,senha) values ('arthur', 'arthur.teste@gmail.com', 123456);
+insert into tbusuario(nome,email,senha,datanasc) values ('arthur', 'arthur.teste1@gmail.com', 123456, '2008-08-05');
+select * from tbusuario;
+
+update tbusuario set senha = sha1("123456") where usuario= 1;

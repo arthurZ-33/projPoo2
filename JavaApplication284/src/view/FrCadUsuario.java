@@ -145,7 +145,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
         jPcadLayout.setHorizontalGroup(
             jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPcadLayout.createSequentialGroup()
-                .addGap(0, 31, Short.MAX_VALUE)
+                .addGap(0, 44, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -220,10 +220,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPcad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPcad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,11 +315,11 @@ public class FrCadUsuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "campo 'Nome' possui formato inválido");
             return false;
         }
-        if (!edtEmail.getText().matches("^[a-z0-9_.]+@[a-z0-9]+.[a-z+]$")) {
+        if (!edtEmail.getText().matches("^[a-z0-9_.]+@[a-z0-9_.]+.[a-z]+$")) {
             JOptionPane.showMessageDialog(null, "campo 'Email' possui formato inválido");
             return false;
         }
-        if (!edtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}")) {
+        if (!edtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
             JOptionPane.showMessageDialog(null, "O campo de 'data de nascimento' possui formato inválido ");
         }
 

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 
 import java.util.logging.Logger;
@@ -78,6 +79,46 @@ public class UsuarioController {
             gerenciador.fecharConexao(comando);
         }
         return false;
+    }
+      
+      public List<Usuario> consultar(){
+        String sql = "SELECT * from  TBUSUARIO";
+         
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
+        
+        //crio a lista de usuario, vazia ainda
+        List<Usuario> lista = new ArrayList<>();
+        
+        try {
+            comando = gerenciador.prepararComando(sql);
+          
+            resultado = comando.executeQuery();
+              
+            while(resultado.next()){
+            Usuario usu = new Usuario();
+            
+            usu.setPkUsuario(resultado.getInt("usuario"));
+            usu.setNome(resultado.getString("nome"));
+            usu.setEmail(resultado.getString("email"));
+            usu.setSenha(resultado.getString("senha"));//É a hash
+            usu.setDataNascimento(resultado.getDate("datanasc"));
+            usu.setAtivo(resultado.getBoolean("ativo"));
+            
+            lista.add(usu);
+            }
+            
+        
+            
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }finally {
+            gerenciador.fecharConexao(comando, resultado);
+        }
+        return lista;
     }
 }
 

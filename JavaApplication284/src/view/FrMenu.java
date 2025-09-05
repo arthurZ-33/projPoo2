@@ -38,7 +38,7 @@ public class FrMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMConsulta = new javax.swing.JMenu();
-        jMUsuario = new javax.swing.JMenuItem();
+        miConUsuario = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMSair = new javax.swing.JMenuItem();
         jMsobre = new javax.swing.JMenu();
@@ -89,13 +89,13 @@ public class FrMenu extends javax.swing.JFrame {
 
         jMConsulta.setText("consultas");
 
-        jMUsuario.setText("Usuario");
-        jMUsuario.addActionListener(new java.awt.event.ActionListener() {
+        miConUsuario.setText("Usuario");
+        miConUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMUsuarioActionPerformed(evt);
+                miConUsuarioActionPerformed(evt);
             }
         });
-        jMConsulta.add(jMUsuario);
+        jMConsulta.add(miConUsuario);
 
         jMenuItem2.setText("???");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,10 +143,12 @@ public class FrMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMUsuarioActionPerformed
+    private void miConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConUsuarioActionPerformed
+        frConUsuario telaconUsuario = new frConUsuario(this, rootPaneCheckingEnabled);
+        telaconUsuario.setVisible(true);
+    }//GEN-LAST:event_miConUsuarioActionPerformed
 
+    
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -202,7 +204,6 @@ public class FrMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMConsulta;
     private javax.swing.JMenuItem jMSair;
-    private javax.swing.JMenuItem jMUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -211,5 +212,6 @@ public class FrMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu jconsultar;
     private javax.swing.JMenuItem miCadUsuarios;
+    private javax.swing.JMenuItem miConUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package utils;
 
+import com.sun.org.apache.xml.internal.resolver.Catalog;
 import java.awt.Image;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -64,5 +65,19 @@ public class Util {
             System.err.println("Algoritimo SHA1 não encontrado");
         }
         return hashSHA1;
+    }
+    
+       public static String converterDateToString(Date data) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String texto = "";
+
+        try {
+            //Irá formatar a data para o formato dd/MM/yyyy
+            texto = formato.format(data);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao formatar a data");
+        }
+        
+       return texto;
     }
 }

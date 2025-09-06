@@ -87,10 +87,10 @@ public class UsuarioController {
                 sql = "SELECT * FROM TBUSUARIO WHERE usuario =" + filtro;
                 break;
             case 1: //nome contendo
-                sql = "SELECT * FROM TBUSUARIO WHERE nome =" + filtro;
+                sql = "SELECT * FROM TBUSUARIO WHERE nome like '%" + filtro + "%'";
                     break;
             case 2:// email contendo
-                sql = "SELECT * FROM TBUSUARIO WHERE email =" + filtro;
+                sql = "SELECT * FROM TBUSUARIO WHERE email like '%" + filtro + "%'";
                     break;
         }
 

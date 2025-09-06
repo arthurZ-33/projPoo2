@@ -267,7 +267,7 @@ public class frConUsuario extends javax.swing.JDialog {
         
         FrAltUsuario telaAlterar = new FrAltUsuario(null, rootPaneCheckingEnabled);
         // passo pra tela e alteraçãp o código do usuário selecionado
-        telaAlterar.setPkUsuario();
+        telaAlterar.setPkUsuario(pkUsuario);
         telaAlterar.setVisible(true);
     }//GEN-LAST:event_btnAlterarMouseClicked
 

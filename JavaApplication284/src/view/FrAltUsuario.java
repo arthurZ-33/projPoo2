@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import utils.Util;
+import java.util.List;
 
 /**
  *
@@ -55,7 +56,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
         edtConfSenha = new javax.swing.JPasswordField();
         edtSenha = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        edtNome1 = new javax.swing.JTextField();
+        edtNome = new javax.swing.JTextField();
         btnSalvar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -177,39 +178,39 @@ public class FrAltUsuario extends javax.swing.JDialog {
             .addGroup(jPcadLayout.createSequentialGroup()
                 .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPcadLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPcadLayout.createSequentialGroup()
-                                .addComponent(edtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(chkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPcadLayout.createSequentialGroup()
-                                .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPcadLayout.createSequentialGroup()
-                                        .addComponent(btnCancelar)
-                                        .addGap(62, 62, 62)
-                                        .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6))
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAlterarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPcadLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(edtConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPcadLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(edtNome1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addComponent(edtCodigo))
+                        .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(edtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jLabel9)
                             .addComponent(jLabel3)
-                            .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtEmail))))
+                .addGap(122, 122, 122))
+            .addGroup(jPcadLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPcadLayout.createSequentialGroup()
+                        .addComponent(edtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(chkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPcadLayout.createSequentialGroup()
+                        .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPcadLayout.createSequentialGroup()
+                                .addComponent(btnCancelar)
+                                .addGap(62, 62, 62)
+                                .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAlterarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18))
         );
         jPcadLayout.setVerticalGroup(
@@ -229,7 +230,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -401,7 +402,25 @@ public class FrAltUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    
+        this.setIconImage(Util.getIcone());
+        
+        //Carregar os dados do usuario
+        UsuarioController controller = new UsuarioController();
+        
+        //Consultei os usuários
+        List<Usuario> lista = controller.consultar(0, String.valueOf(pkUsuario));
+        
+        Usuario usu = lista.get(0);
+        
+        //Prencher os campos como a variável usu
+        edtCodigo.setText(String.valueOf(usu.getPkUsuario()));
+        edtNome.setText(usu.getNome());
+        edtEmail.setText(usu.getEmail());
+        
+        edtDataNasc.setText(
+        Util.converterDateToString(usu.getDataNascimento()));
+        chkAtivo.setSelected(usu.isAtivo());
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -455,7 +474,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
     private javax.swing.JPasswordField edtConfSenha;
     private javax.swing.JFormattedTextField edtDataNasc;
     private javax.swing.JTextField edtEmail;
-    private javax.swing.JTextField edtNome1;
+    private javax.swing.JTextField edtNome;
     private javax.swing.JPasswordField edtSenha;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

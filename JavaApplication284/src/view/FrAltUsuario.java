@@ -58,8 +58,8 @@ public class FrAltUsuario extends javax.swing.JDialog {
         edtConfSenha = new javax.swing.JPasswordField();
         edtSenha = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        edtNome = new javax.swing.JTextField();
-        btnSalvar1 = new javax.swing.JButton();
+        edtNome1 = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alteração do Usuário");
@@ -155,15 +155,15 @@ public class FrAltUsuario extends javax.swing.JDialog {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Nome");
 
-        btnSalvar1.setText("Salvar");
-        btnSalvar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvar1MouseClicked(evt);
+                btnSalvarMouseClicked(evt);
             }
         });
-        btnSalvar1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvar1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -187,7 +187,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
                     .addGroup(jPcadLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(edtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(edtNome1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel3)
                             .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +208,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
                             .addGroup(jPcadLayout.createSequentialGroup()
                                 .addComponent(btnCancelar)
                                 .addGap(62, 62, 62)
-                                .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6))
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,7 +232,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(edtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,7 +256,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
                 .addGap(38, 38, 38)
                 .addGroup(jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnSalvar1))
+                    .addComponent(btnSalvar))
                 .addGap(49, 49, 49))
         );
 
@@ -322,7 +322,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
         //ler os campos e guardar um objeto
         Usuario usu = new Usuario();
        usu.setPkUsuario(Integer.parseInt((edtCodigo.getText())));
-        usu.setNome(edtNome.getText());
+        usu.setNome(edtNome1.getText());
         usu.setEmail(edtEmail.getText());
         if(edtSenha.isEditable()){
         usu.setSenha(Util.calcularHash(new String(edtSenha.getPassword())));
@@ -337,7 +337,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
     }
 
     private boolean verificarCampos() {
-        if (edtNome.getText().isEmpty()) {
+        if (edtNome1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "campo 'Nome' em branco");
             return false;
         }
@@ -361,7 +361,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
         //* - 0 ou mais vezes
         //{5}  5 vezes
         //{2} vezes
-        if (!edtNome.getText().matches("^[\\p{L} ]+$")) {
+        if (!edtNome1.getText().matches("^[\\p{L} ]+$")) {
             JOptionPane.showMessageDialog(null, "campo 'Nome' possui formato inválido");
             return false;
         }
@@ -396,13 +396,13 @@ public class FrAltUsuario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtSenhaActionPerformed
 
-    private void btnSalvar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvar1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvar1MouseClicked
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnSalvarMouseClicked
 
-    private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvar1ActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setIconImage(Util.getIcone());
@@ -417,7 +417,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
 
         //Prencher os campos como a variável usu
         edtCodigo.setText(String.valueOf(usu.getPkUsuario()));
-        edtNome.setText(usu.getNome());
+        edtNome1.setText(usu.getNome());
         edtEmail.setText(usu.getEmail());
 
         edtDataNasc.setText(
@@ -471,13 +471,13 @@ public class FrAltUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarSenha;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnSalvar1;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox chkAtivo;
     private javax.swing.JTextField edtCodigo;
     private javax.swing.JPasswordField edtConfSenha;
     private javax.swing.JFormattedTextField edtDataNasc;
     private javax.swing.JTextField edtEmail;
-    private javax.swing.JTextField edtNome;
+    private javax.swing.JTextField edtNome1;
     private javax.swing.JPasswordField edtSenha;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

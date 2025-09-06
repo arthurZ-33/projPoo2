@@ -17,7 +17,9 @@ import java.util.List;
  * @author aluno.saolucas
  */
 public class FrAltUsuario extends javax.swing.JDialog {
+
     private int pkUsuario;
+
     /**
      * Creates new form FrAltUsuario
      */
@@ -25,9 +27,9 @@ public class FrAltUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    public void setPkUsuario(int pkUsuario){
-    this.pkUsuario = pkUsuario;
+
+    public void setPkUsuario(int pkUsuario) {
+        this.pkUsuario = pkUsuario;
     }
 
     /**
@@ -293,48 +295,47 @@ public class FrAltUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAlterarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarSenhaMouseClicked
-        if(edtSenha.isEditable()){
+        if (edtSenha.isEditable()) {
             edtSenha.setEditable(false);
             edtConfSenha.setEditable(false);
             edtSenha.setBackground(Color.GRAY);
             edtConfSenha.setBackground(Color.GRAY);
-            
-            
+
             edtSenha.setText("");
             edtConfSenha.setText("");
-            }else{
+        } else {
             edtSenha.setEditable(true);
             edtConfSenha.setEditable(true);
             edtSenha.setBackground(Color.WHITE);
             edtConfSenha.setBackground(Color.WHITE);
-            
+
             btnAlterarSenha.setText("Cancelar");
         }
     }//GEN-LAST:event_btnAlterarSenhaMouseClicked
 
-      private void gravar() {
+    private void gravar() {
         //validar o preenchimento dos campos
-        if(!verificarCampos()){
+        if (!verificarCampos()) {
             return;
         }
 
         //ler os campos e guardar um objeto
         Usuario usu = new Usuario();
+       usu.setPkUsuario(Integer.parseInt((edtCodigo.getText())));
         usu.setNome(edtNome.getText());
         usu.setEmail(edtEmail.getText());
+        if(edtSenha.isEditable()){
         usu.setSenha(Util.calcularHash(new String(edtSenha.getPassword())));
-        usu.setDataNascimento(Util.converterStringToDate(edtDataNasc.getText()));
-        usu.setAtivo(chkAtivo.isSelected());
+        }
 
         //enviar para o banco de dados
         UsuarioController controller = new UsuarioController();
-        if(controller.inserir(usu)){
+        if (controller.inserir(usu)) {
             JOptionPane.showMessageDialog(null, "Usuário inserido");
             this.dispose();
         }
     }
-      
-      
+
     private boolean verificarCampos() {
         if (edtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "campo 'Nome' em branco");
@@ -344,9 +345,11 @@ public class FrAltUsuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "campo 'E-mail' em branco");
             return false;
         }
-        if (edtSenha.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "campo 'Senha' em branco");
-            return false;
+        if (edtSenha.isEditable()) {
+            if (new String(edtSenha.getPassword()).isEmpty()) {
+                JOptionPane.showMessageDialog(null, "campo 'Senha' em branco");
+                return false;
+            }
         }
 
         //Sobre os codigos abaixo:
@@ -369,22 +372,22 @@ public class FrAltUsuario extends javax.swing.JDialog {
         if (!edtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
             JOptionPane.showMessageDialog(null, "O campo de 'data de nascimento' possui formato inválido ");
         }
+        if (edtSenha.isEditable()) {
+            if (new String(edtConfSenha.getPassword()).length() < 6) {
+                JOptionPane.showMessageDialog(null, "A senha deve ter mais que 6 digitos");
+                return false;
+            }
 
-        if (new String(edtConfSenha.getPassword()).length() < 6){
-        JOptionPane.showMessageDialog(null, "A senha deve ter mais que 6 digitos");
-         return false;
+            String senha = new String(edtSenha.getPassword());
+            String confirmaSenha = new String(edtConfSenha.getPassword());
+            if (!senha.equals(confirmaSenha)) {
+                JOptionPane.showConfirmDialog(null, "As senhas devem ser iguais");
+                return false;
+            }
         }
-
-        String senha = new String(edtSenha.getPassword());
-        String confirmaSenha = new String(edtConfSenha.getPassword());
-        if (!senha.equals(confirmaSenha)) {
-            JOptionPane.showConfirmDialog(null, "As senhas devem ser iguais");
-            return false;
-        }
-
         return true;
     }
-    
+
     private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarSenhaActionPerformed
@@ -403,24 +406,24 @@ public class FrAltUsuario extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setIconImage(Util.getIcone());
-        
+
         //Carregar os dados do usuario
         UsuarioController controller = new UsuarioController();
-        
+
         //Consultei os usuários
         List<Usuario> lista = controller.consultar(0, String.valueOf(pkUsuario));
-        
+
         Usuario usu = lista.get(0);
-        
+
         //Prencher os campos como a variável usu
         edtCodigo.setText(String.valueOf(usu.getPkUsuario()));
         edtNome.setText(usu.getNome());
         edtEmail.setText(usu.getEmail());
-        
+
         edtDataNasc.setText(
-        Util.converterDateToString(usu.getDataNascimento()));
+                Util.converterDateToString(usu.getDataNascimento()));
         chkAtivo.setSelected(usu.isAtivo());
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     /**

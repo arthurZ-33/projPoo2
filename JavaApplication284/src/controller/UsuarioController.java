@@ -127,4 +127,46 @@ public class UsuarioController {
         }
         return lista;
     }
+    
+        public boolean alterar(Usuario usu) {
+        String sql = "UPDATE TBUSUARIO SET"
+                    + "nome = ?, " //1
+                    + "email = ?,"//2
+                    + "datanasc = ?, "//3
+                    + "ativo = ?, "//4
+                    + "WHERE pkUsuario = ?, ";
+                    if(usu.getSenha() != null){
+                    sql += " ,senha = ?";//5
+                    }
+                    
+                    sql += "Where pkUsuario = ?";
+                
+                
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
+
+        try {
+            comando = gerenciador.prepararComando(sql);
+
+            comando.setString(1, usu.getNome());
+            comando.setString(2, usu.getEmail());
+            comando.setDate(3, new java.sql.Date(usu.getDataNascimento().getTime()));
+            comando.setBoolean(4, usu.isAtivo());
+            if(usu.getSenha() != null){
+            comando.setString(5, usu.getSenha());
+            comando.setInt(6, usu.getPkUsuario());
+            }else {
+            comando.setInt(5, usu.getPkUsuario());
+            }
+            comando.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            gerenciador.fecharConexao(comando);
+        }
+        return false;
+    }
 }

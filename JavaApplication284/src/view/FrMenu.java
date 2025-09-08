@@ -40,7 +40,7 @@ public class FrMenu extends javax.swing.JFrame {
         jMConsulta = new javax.swing.JMenu();
         miConUsuario = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMSair = new javax.swing.JMenuItem();
+        jMSobre = new javax.swing.JMenuItem();
         jMsobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,13 +105,18 @@ public class FrMenu extends javax.swing.JFrame {
         });
         jMConsulta.add(jMenuItem2);
 
-        jMSair.setText("Sair");
-        jMSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMSairActionPerformed(evt);
+        jMSobre.setText("Sobre");
+        jMSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMSobreMouseClicked(evt);
             }
         });
-        jMConsulta.add(jMSair);
+        jMSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSobreActionPerformed(evt);
+            }
+        });
+        jMConsulta.add(jMSobre);
 
         jMenuBar1.add(jMConsulta);
 
@@ -153,9 +158,9 @@ public class FrMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSairActionPerformed
+    private void jMSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSobreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMSairActionPerformed
+    }//GEN-LAST:event_jMSobreActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
       this.dispose();
@@ -164,6 +169,11 @@ public class FrMenu extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
          this.setIconImage(Util.getIcone());
     }//GEN-LAST:event_formWindowOpened
+
+    private void jMSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSobreMouseClicked
+        this.dispose();
+        jMSobre.setVisible(true);
+    }//GEN-LAST:event_jMSobreMouseClicked
 
     /**
      * @param args the command line arguments
@@ -203,7 +213,7 @@ public class FrMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMConsulta;
-    private javax.swing.JMenuItem jMSair;
+    private javax.swing.JMenuItem jMSobre;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

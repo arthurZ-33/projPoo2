@@ -9,6 +9,7 @@ import controller.UsuarioController;
 import javax.swing.table.DefaultTableModel;
 import model.Usuario;
 import java.util.List;
+import javax.swing.JOptionPane;
 import utils.Util;
 
 /**
@@ -44,6 +45,7 @@ public class frConUsuario extends javax.swing.JDialog {
         edtFiltro = new javax.swing.JTextField();
         cbxFiltro = new javax.swing.JComboBox<>();
         btnAlterar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -130,33 +132,43 @@ public class frConUsuario extends javax.swing.JDialog {
             }
         });
 
+        btnDeletar.setText("Deletar");
+        btnDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeletarMouseClicked(evt);
+            }
+        });
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addComponent(jLabel1))
-                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                                .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(edtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnPesquisar))
-                            .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                                .addComponent(btnVoltar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAlterar)
-                                .addGap(2, 2, 2)))))
+                .addGap(295, 295, 295)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 145, Short.MAX_VALUE)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(edtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisar))
+                    .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                            .addComponent(btnVoltar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlterar)
+                            .addGap(27, 27, 27)
+                            .addComponent(btnDeletar))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(158, 158, 158))
         );
         pnlPrincipalLayout.setVerticalGroup(
@@ -174,7 +186,8 @@ public class frConUsuario extends javax.swing.JDialog {
                 .addGap(53, 53, 53)
                 .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
-                    .addComponent(btnAlterar))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnDeletar))
                 .addGap(70, 70, 70))
         );
 
@@ -259,7 +272,7 @@ public class frConUsuario extends javax.swing.JDialog {
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         //Valido se tem alguma linha selecionada no grade = -1
         if(tblUsuarios.getSelectedRow() == -1){
-        return;//encerro a função
+            return;//encerro a função
         }
         
         //pego o valor de célula na grade, na coluna 0 (código)
@@ -274,11 +287,44 @@ public class frConUsuario extends javax.swing.JDialog {
         // passo pra tela e alteraçãp o código do usuário selecionado
         telaAlterar.setPkUsuario(pkUsuario);
         telaAlterar.setVisible(true);
+        //quando fechar a janela de alterar vai continuar aqui
+        //refazendo a pesquisa da grade para atualizar
+        pesquisar();
+        
     }//GEN-LAST:event_btnAlterarMouseClicked
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarMouseClicked
+        //Valido se tem alguma linha selecionada no grade = -1
+        if(tblUsuarios.getSelectedRow() == -1){
+            return;//encerro a função
+        }
+        
+        //pego o valor de célula na grade, na coluna 0 (código)
+        int posicaoLinha = tblUsuarios.getSelectedRow();
+        
+        //pegar o valor da célula na grade, na coluna 0(código)
+        String celula = tblUsuarios.getValueAt(posicaoLinha, 0).toString();
+        
+        int pkUsuario = Integer.parseInt(celula);
+        
+        //Passar para o controller para remover do banco de dados
+        UsuarioController controller = new UsuarioController();
+        
+        if(controller.deletar(pkUsuario)){
+            JOptionPane.showMessageDialog(null, "Usuário deletado");
+            pesquisar();
+        }else{
+            JOptionPane.showMessageDialog(null, "Falha ao deletar");
+        }
+    }//GEN-LAST:event_btnDeletarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -324,6 +370,7 @@ public class frConUsuario extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbxFiltro;

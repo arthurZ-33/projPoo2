@@ -88,10 +88,10 @@ public class UsuarioController {
                 break;
             case 1: //nome contendo
                 sql = "SELECT * FROM TBUSUARIO WHERE nome like '%" + filtro + "%'";
-                    break;
+                break;
             case 2:// email contendo
                 sql = "SELECT * FROM TBUSUARIO WHERE email like '%" + filtro + "%'";
-                    break;
+                break;
         }
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -127,21 +127,20 @@ public class UsuarioController {
         }
         return lista;
     }
-    
-        public boolean alterar(Usuario usu) {
+
+    public boolean alterar(Usuario usu) {
         String sql = "UPDATE TBUSUARIO SET"
-                    + "nome = ?, " //1
-                    + "email = ?,"//2
-                    + "datanasc = ?, "//3
-                    + "ativo = ?, "//4
-                    + "WHERE pkUsuario = ?, ";
-                    if(usu.getSenha() != null){
-                    sql += " ,senha = ?";//5
-                    }
-                    
-                    sql += "Where pkUsuario = ?";
-                
-                
+                + "nome = ?, " //1
+                + "email = ?,"//2
+                + "datanasc = ?, "//3
+                + "ativo = ?, "//4
+                + "WHERE pkUsuario = ?, ";
+        if (usu.getSenha() != null) {
+            sql += " ,senha = ?";//5
+        }
+
+        sql += "Where pkUsuario = ?";
+
         GerenciadorConexao gerenciador = new GerenciadorConexao();
 
         PreparedStatement comando = null;
@@ -154,12 +153,36 @@ public class UsuarioController {
             comando.setString(2, usu.getEmail());
             comando.setDate(3, new java.sql.Date(usu.getDataNascimento().getTime()));
             comando.setBoolean(4, usu.isAtivo());
-            if(usu.getSenha() != null){
-            comando.setString(5, usu.getSenha());
-            comando.setInt(6, usu.getPkUsuario());
-            }else {
-            comando.setInt(5, usu.getPkUsuario());
+            if (usu.getSenha() != null) {
+                comando.setString(5, usu.getSenha());
+                comando.setInt(6, usu.getPkUsuario());
+            } else {
+                comando.setInt(5, usu.getPkUsuario());
             }
+            comando.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            gerenciador.fecharConexao(comando);
+        }
+        return false;
+    }
+
+    public boolean deletar(int pkUsuario) {
+
+        String sql = "DELETE FROM TBUSUARIO"
+                + "WHERE pkUsuario = ? ";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+
+        PreparedStatement comando = null;
+
+        try {
+            comando = gerenciador.prepararComando(sql);
+
+            comando.setInt(1, pkUsuario);
+
             comando.executeUpdate();
             return true;
         } catch (SQLException e) {

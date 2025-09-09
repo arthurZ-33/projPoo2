@@ -118,10 +118,25 @@ public class UsuarioController {
                 usu.setDataNascimento(resultado.getDate("datanasc"));
                 usu.setAtivo(resultado.getBoolean("ativo"));
 
+                //pegar o bytes da imagem no banco de dados
+                byte[] bytes = resultado.getBytes("imagem");
+                
+                //Se tiver algum byte vai montar a imagem
+                if(bytes != null){
+                    
+                //Monto um stream crio a imagem
+                ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+                
+                BufferedImage imagem = ImageIO.read(bis);
+                
+                //transformo a imagem em icone e guardo no usuario
+                usu.setImagem(new ImageIcon(imagem));
+                }
+                
                 lista.add(usu);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } finally {
             gerenciador.fecharConexao(comando, resultado);

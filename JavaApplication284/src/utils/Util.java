@@ -1,6 +1,7 @@
 package utils;
 
 import java.awt.Image;
+import java.io.File;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Util {
 
@@ -77,4 +80,30 @@ public class Util {
         
        return texto;
     }
+       
+       public static File escolherImagem(){
+       File arquivo = null;
+       
+       //Cria um escolhedor de arquivos
+       JFileChooser exploradorArquivos = new JFileChooser();
+       
+       //Filtrar os tipos de arquivos que irá buscar
+       FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png");
+       exploradorArquivos.setFileFilter(filtro);
+           
+       //COnfigurações para permitir a seleção de apenas um arquivo
+       exploradorArquivos.setMultiSelectionEnabled(false);
+       
+       //chama o explorador de arquivos e guadra o resultado:
+       //APPROVE_OPTION (selecinou)
+       //CANCEL_OPTION (usuário cancelou)
+       int resultado = exploradorArquivos.showOpenDialog(null);
+       
+       if(resultado == JFileChooser.APPROVE_OPTION){
+       //Pega o arquivo selecionado
+       arquivo = exploradorArquivos.getSelectedFile();
+       }
+       
+       return arquivo;
+       }
 }

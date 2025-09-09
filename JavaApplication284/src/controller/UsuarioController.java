@@ -68,7 +68,7 @@ public class UsuarioController {
             comando.setString(3, usu.getSenha());
             comando.setDate(4, new java.sql.Date(usu.getDataNascimento().getTime()));
             comando.setBoolean(5, usu.isAtivo());
-            comando.setBytes(6, usu.getImagem());
+            comando.setBytes(6, Util.converterIconToBytes(usu.getImagem()));
 
             comando.executeUpdate();
             return true;

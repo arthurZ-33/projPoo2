@@ -74,8 +74,8 @@ public class Util {
         }
         return hashSHA1;
     }
-    
-       public static String converterDateToString(Date data) {
+
+    public static String converterDateToString(Date data) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String texto = "";
 
@@ -85,71 +85,71 @@ public class Util {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao formatar a data");
         }
-        
-       return texto;
-    }
-       
-       public static File escolherImagem(){
-       File arquivo = null;
-       
-       //Cria um escolhedor de arquivos
-       JFileChooser exploradorArquivos = new JFileChooser();
-       
-       //Filtrar os tipos de arquivos que irá buscar
-       FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png");
-       exploradorArquivos.setFileFilter(filtro);
-           
-       //COnfigurações para permitir a seleção de apenas um arquivo
-       exploradorArquivos.setMultiSelectionEnabled(false);
-       
-       //chama o explorador de arquivos e guadra o resultado:
-       //APPROVE_OPTION (selecinou)
-       //CANCEL_OPTION (usuário cancelou)
-       int resultado = exploradorArquivos.showOpenDialog(null);
-       
-       if(resultado == JFileChooser.APPROVE_OPTION){
-       //Pega o arquivo selecionado
-       arquivo = exploradorArquivos.getSelectedFile();
-       }
-       
-       return arquivo;
-       }
-       public static Icon converterFileToIcon(File arquivo){
-       //passo o caminho da imagem para o construtor de ImagemIcon
-       ImageIcon icon = new ImageIcon(arquivo.getAbsolutePath());
-       return icon;
-       }
-       
-       public static ImageIcon redimensionarImagem(Icon icone, int largura, int altura){
-  
-       //converte o icone em imagem
-       Image imagemOriginal = ((ImageIcon) icone).getImage();
-       
-       //redimensionoa imagem
-       Image novaImagem = imagemOriginal.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
-       
-       //converto a imagem redimensionadssssa em icone de novo
-       return new ImageIcon(novaImagem);
-       }
-       
-       public static byte[] converterIconToBytes(Icon icon){
-       BufferedImage image  = new BufferedImage(
-       icon.getIconWidth(),
-       icon.getIconHeight(),
-       BufferedImage.TYPE_INT_ARGB);
-       Graphics2D g2d = image.createGraphics();
-       icon.paintIcon(null, g2d, 0, 0);
-       g2d.dispose();
-       
-       ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-       try{
-       ImageIO.write(image, "png", byteArray);
-       }catch(IOException erro){
-       Logger.getLogger(Util.class.getName()).log(
-       Level.SEVERE, null, erro);
-               }
-       return byteArray.toByteArray();
-       }
-           
-       }
 
+        return texto;
+    }
+
+    public static File escolherImagem() {
+        File arquivo = null;
+
+        //Cria um escolhedor de arquivos
+        JFileChooser exploradorArquivos = new JFileChooser();
+
+        //Filtrar os tipos de arquivos que irá buscar
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png");
+        exploradorArquivos.setFileFilter(filtro);
+
+        //COnfigurações para permitir a seleção de apenas um arquivo
+        exploradorArquivos.setMultiSelectionEnabled(false);
+
+        //chama o explorador de arquivos e guadra o resultado:
+        //APPROVE_OPTION (selecinou)
+        //CANCEL_OPTION (usuário cancelou)
+        int resultado = exploradorArquivos.showOpenDialog(null);
+
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            //Pega o arquivo selecionado
+            arquivo = exploradorArquivos.getSelectedFile();
+        }
+
+        return arquivo;
+    }
+
+    public static Icon converterFileToIcon(File arquivo) {
+        //passo o caminho da imagem para o construtor de ImagemIcon
+        ImageIcon icon = new ImageIcon(arquivo.getAbsolutePath());
+        return icon;
+    }
+
+    public static ImageIcon redimensionarImagem(Icon icone, int largura, int altura) {
+
+        //converte o icone em imagem
+        Image imagemOriginal = ((ImageIcon) icone).getImage();
+
+        //redimensionoa imagem
+        Image novaImagem = imagemOriginal.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
+
+        //converto a imagem redimensionadssssa em icone de novo
+        return new ImageIcon(novaImagem);
+    }
+
+    public static byte[] converterIconToBytes(Icon icon) {
+        BufferedImage image = new BufferedImage(
+                icon.getIconWidth(),
+                icon.getIconHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        icon.paintIcon(null, g2d, 0, 0);
+        g2d.dispose();
+
+        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(image, "png", byteArray);
+        } catch (IOException erro) {
+            Logger.getLogger(Util.class.getName()).log(
+                    Level.SEVERE, null, erro);
+        }
+        return byteArray.toByteArray();
+    }
+
+}

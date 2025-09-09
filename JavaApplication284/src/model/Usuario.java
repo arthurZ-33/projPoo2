@@ -38,7 +38,7 @@ public class Usuario {
         this.imagem = imagem;
     }
 
-    s
+    
 
     public void setPkUsuario(int pkUsuario) {
         this.pkUsuario = pkUsuario;

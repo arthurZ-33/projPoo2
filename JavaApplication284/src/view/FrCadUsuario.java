@@ -7,6 +7,8 @@ package view;
 
 
 import controller.UsuarioController;
+import java.io.File;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import utils.Util; 
@@ -151,15 +153,11 @@ public class FrCadUsuario extends javax.swing.JDialog {
         pnlFoto.setLayout(pnlFotoLayout);
         pnlFotoLayout.setHorizontalGroup(
             pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFotoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(imgFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(imgFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
         );
         pnlFotoLayout.setVerticalGroup(
             pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFotoLayout.createSequentialGroup()
-                .addComponent(imgFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(imgFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
         );
 
         btnEscolherImagem.setText("Escolher imagem");
@@ -211,7 +209,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
                         .addComponent(pnlFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEscolherImagem)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPcadLayout.setVerticalGroup(
             jPcadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,8 +313,17 @@ public class FrCadUsuario extends javax.swing.JDialog {
 
     private void btnEscolherImagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEscolherImagemMouseClicked
         //escolher a imagem
+        File arquivo = Util.escolherImagem();
         
-        //carregar a imagem
+        //carrega a imagem se selecionou um arquivo
+        if(arquivo != null){
+           Icon icone = Util.converterFileToIcon(arquivo);
+           
+           Icon iconeNovo = Util.redimensionarImagem(icone, 121, 108);
+           
+           imgFoto.setIcon(iconeNovo);
+        }
+       
     }//GEN-LAST:event_btnEscolherImagemMouseClicked
 
     private void gravar() {

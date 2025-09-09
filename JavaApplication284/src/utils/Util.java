@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -105,5 +106,22 @@ public class Util {
        }
        
        return arquivo;
+       }
+       public static Icon converterFileToIcon(File arquivo){
+       //passo o caminho da imagem para o construtor de ImagemIcon
+       ImageIcon icon = new ImageIcon(arquivo.getAbsolutePath());
+       return icon;
+       }
+       
+       public static ImageIcon redimensionarImagem(Icon icone, int largura, int altura){
+  
+       //converte o icone em imagem
+       Image imagemOriginal = ((ImageIcon) icone).getImage();
+       
+       //redimensionoa imagem
+       Image novaImagem = imagemOriginal.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
+       
+       //converto a imagem redimensionadssssa em icone de novo
+       return new ImageIcon(novaImagem);
        }
 }

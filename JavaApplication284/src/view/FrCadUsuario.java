@@ -339,6 +339,8 @@ public class FrCadUsuario extends javax.swing.JDialog {
         usu.setSenha(Util.calcularHash(new String(edtSenha.getPassword())));
         usu.setDataNascimento(Util.converterStringToDate(edtDataNasc.getText()));
         usu.setAtivo(chkAtivo.isSelected());
+        usu.setImagem(imgFoto.getIcon());
+        
 
         //enviar para o banco de dados
         UsuarioController controller = new UsuarioController();

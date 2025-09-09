@@ -15,3 +15,6 @@ select * from tbusuario;
 delete from tbusuario where usuario = 1;
 
 update tbusuario set senha = sha1("123456") where usuario= 1;
+
+alter table tbusuario add imagem blob(5120);
+alter table tbusuario change imagem imagem blob;
